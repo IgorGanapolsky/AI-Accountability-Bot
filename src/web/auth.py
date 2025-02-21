@@ -99,8 +99,8 @@ def github_callback():
                 'client_secret': GITHUB_CLIENT_SECRET,
                 'code': code,
                 'redirect_uri': os.getenv('GITHUB_REDIRECT_URI') or url_for('auth.github_callback', _external=True)
-            }
-        )
+            }, 
+        timeout=60)
 
         if response.status_code != 200:
             logger.error(f"GitHub token exchange failed: {response.text}")

@@ -22,7 +22,7 @@ def create_table(base_id: str, table_name: str, fields: list, description: str, 
     url = f'https://api.airtable.com/v0/meta/bases/{base_id}/tables'
     
     try:
-        response = requests.post(url, headers=headers, json=table_data)
+        response = requests.post(url, headers=headers, json=table_data, timeout=60)
         response.raise_for_status()
         print(f"✅ Created {table_name} table successfully!")
         return True
